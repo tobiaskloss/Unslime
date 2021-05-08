@@ -75,8 +75,6 @@ public class CharacterController : MonoBehaviour
         {
             bulletController.transform.localEulerAngles = new Vector3(0, 0, 180f);
         }
-
-
     }
 
     private void FixedUpdate()

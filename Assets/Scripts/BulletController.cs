@@ -5,16 +5,21 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public float bulletForce = 5000f;
+    public float lifeTime = 1f;
+    public float lifeTimeAfterCollision = .1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
+        Destroy(gameObject, lifeTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter(Collision collision)
     {
-        rb.AddForce(transform.right * 10);
+        Destroy(gameObject, lifeTimeAfterCollision);
     }
+
+
 }
