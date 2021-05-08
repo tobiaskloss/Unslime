@@ -1,5 +1,6 @@
 using MLAPI;
 using MLAPI.Messaging;
+using MLAPI.NetworkVariable;
 using Scriptableobjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,8 +28,10 @@ public class CharacterController : NetworkBehaviour
     [Header("Shooting")]
     public GameObject bullet;
 
-    public bool isFlipped = false;
-
+    public NetworkVariableBool isFlipped = new NetworkVariableBool(new NetworkVariableSettings()
+    {
+        WritePermission = NetworkVariablePermission.OwnerOnly,
+    });
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -46,7 +49,7 @@ public class CharacterController : NetworkBehaviour
             if (IsOwner)
             {
                 wsad = context.ReadValue<Vector2>();
-                isFlipped = wsad.x < 0;
+                isFlipped.Value = wsad.x < 0;
             }
         };
 
@@ -81,7 +84,7 @@ public class CharacterController : NetworkBehaviour
     void Shoot()
     {
         Vector3 gunEnd;
-        if (isFlipped)
+        if (isFlipped.Value)
         {
             gunEnd = transform.position + new Vector3(-.5f, 0, 0);
         }
@@ -96,7 +99,7 @@ public class CharacterController : NetworkBehaviour
     void SpawnBulletServerRpc(Vector3 gunEnd)
     {
         var bulletController = Instantiate(bullet, gunEnd, new Quaternion());
-        if (isFlipped)
+        if (isFlipped.Value)
         {
             bulletController.transform.localEulerAngles = new Vector3(0, 0, 180f);
         }

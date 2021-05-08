@@ -7,33 +7,23 @@ public class NetworkRigidbody : NetworkBehaviour
 {
     public NetworkVariableVector2 netVelocity = new NetworkVariableVector2(new NetworkVariableSettings()
     {
-        ReadPermission = NetworkVariablePermission.Everyone,
         WritePermission = NetworkVariablePermission.OwnerOnly,
-        SendTickrate = 20
     });
     public NetworkVariableFloat netAngularVelocity = new NetworkVariableFloat(new NetworkVariableSettings()
     {
-        ReadPermission = NetworkVariablePermission.Everyone,
         WritePermission = NetworkVariablePermission.OwnerOnly,
-        SendTickrate = 20
     });
     public NetworkVariableVector2 netPosition = new NetworkVariableVector2(new NetworkVariableSettings()
     {
-        ReadPermission = NetworkVariablePermission.Everyone,
         WritePermission = NetworkVariablePermission.OwnerOnly,
-        SendTickrate = 20
     });
     public NetworkVariableFloat netRotation = new NetworkVariableFloat(new NetworkVariableSettings()
     {
-        ReadPermission = NetworkVariablePermission.Everyone,
         WritePermission = NetworkVariablePermission.OwnerOnly,
-        SendTickrate = 20
     });
     public NetworkVariableUInt netUpdateId = new NetworkVariableUInt(new NetworkVariableSettings()
     {
-        ReadPermission = NetworkVariablePermission.Everyone,
         WritePermission = NetworkVariablePermission.OwnerOnly,
-        SendTickrate = 20
     });
 
     [SerializeField]
