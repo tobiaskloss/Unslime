@@ -8,6 +8,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private CharacterSettings _characterSettings;
 
     [SerializeField] private InputAction _jumpAction;
+    [SerializeField] private InputAction _moveAction;
 
     private Rigidbody2D _rigidbody2D;
 
@@ -18,6 +19,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Transform _groundCheckPosition;
     private bool _grounded;
 
+    private Vector2 wsad;
 
     private void Awake()
     {
@@ -32,6 +34,11 @@ public class CharacterController : MonoBehaviour
             {
                 _rigidbody2D.AddForce(Vector2.up * _characterSettings.jumpForce, ForceMode2D.Impulse);
             }
+        };
+
+        _moveAction.performed += context =>
+        {
+            wsad = context.ReadValue<Vector2>();            
         };
     }
 
@@ -48,15 +55,18 @@ public class CharacterController : MonoBehaviour
                 _grounded = true;
             }
         }
+        _rigidbody2D.AddForce(new Vector2(wsad.x * _characterSettings.walkSpeed, 0), ForceMode2D.Force);
     }
 
     private void OnEnable()
     {
         _jumpAction.Enable();
+        _moveAction.Enable();
     }
 
     private void OnDisable()
     {
         _jumpAction.Disable();
+        _moveAction.Disable();
     }
 }

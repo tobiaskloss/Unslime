@@ -135,7 +135,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-1890825285470382586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   - {x: 1.2800002, y: -1.2799997, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 44772
+  m_InstanceId: 60376
 --- !u!114 &1534439843619202793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +191,54 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Jump
       m_Flags: 0
+  _moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 00359cde-d58b-483d-8b68-d2b47eb51535
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: 08e4e7a5-9220-462e-a93d-2c1ac28e692f
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: up
+      m_Id: dbe01548-fe22-430c-b9b4-734d311a51ee
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 2c26fd0e-aad3-4e1f-8048-d7b30b2af62f
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 814ab248-941c-4400-9c01-e95d2ee60947
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 72c33378-1594-46d0-9a68-c73e6b4313c5
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
   _checkForGrounding: 1
   _groundLayers:
     serializedVersion: 2
