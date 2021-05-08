@@ -4,6 +4,7 @@ using MLAPI.NetworkVariable;
 using Scriptableobjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController : NetworkBehaviour
@@ -16,12 +17,16 @@ public class CharacterController : NetworkBehaviour
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
 
+    [SerializeField] private Slider _healthSlider;
+
     [Header("Ground Check")]
     [SerializeField] private bool _checkForGrounding;
 
     [SerializeField] private LayerMask _groundLayers;
     [SerializeField] private Transform _groundCheckPosition;
     private bool _grounded;
+    
+    
 
     [Header("Input")]
     private Vector2 wsad;
@@ -33,10 +38,22 @@ public class CharacterController : NetworkBehaviour
     {
         WritePermission = NetworkVariablePermission.OwnerOnly,
     });
+
+    private int _maxHealth = 10;
+    public NetworkVariableInt health = new NetworkVariableInt(new NetworkVariableSettings()
+    {
+        WritePermission = NetworkVariablePermission.ServerOnly,
+    });
+    
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (IsServer)
+        {
+            health.Value = _maxHealth;
+        }
     }
 
     void Start()
@@ -125,6 +142,8 @@ public class CharacterController : NetworkBehaviour
         }
         _spriteRenderer.flipX = !isFlipped.Value;
         _rigidbody2D.AddForce(new Vector2(wsad.x * _characterSettings.walkSpeed, 0), ForceMode2D.Force);
+
+        _healthSlider.value = health.Value;
     }
 
     private void OnEnable()
@@ -139,5 +158,14 @@ public class CharacterController : NetworkBehaviour
         _jumpAction.Disable();
         _moveAction.Disable();
         _shootAction.Disable();
+    }
+
+    public void Damage()
+    {
+        health.Value = health.Value - 1;
+        if (health.Value <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

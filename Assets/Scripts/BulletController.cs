@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MLAPI;
+using Scriptableobjects;
 using UnityEngine;
 
 public class BulletController : NetworkBehaviour
@@ -24,6 +25,11 @@ public class BulletController : NetworkBehaviour
     {
         if (IsServer)
         {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                var characterController = collision.gameObject.GetComponent<CharacterController>();
+                characterController.Damage();
+            }
             Destroy(gameObject, lifeTimeAfterCollision);
         }
     }
