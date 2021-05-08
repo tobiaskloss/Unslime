@@ -16,7 +16,7 @@ public class BulletController : NetworkBehaviour
     {
         if (IsServer)
         {
-            rb.AddForce(transform.forward * bulletForce, ForceMode2D.Impulse);
+            rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
             Destroy(gameObject, lifeTime);
         }
     }
