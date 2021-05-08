@@ -160,7 +160,7 @@ MonoBehaviour:
   - {x: 1.2800002, y: -1.2799997, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 47478
+  m_InstanceId: 66648
 --- !u!114 &1534439843619202793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,11 +238,29 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Move
       m_Flags: 8
+  _shootAction:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: beeb1bd0-b713-4ddd-a3e6-15903628471d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4ca6eebf-d2a9-496a-897a-a97932ad2913
+      m_Path: <Mouse>/press
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shoot
+      m_Flags: 0
   _checkForGrounding: 1
   _groundLayers:
     serializedVersion: 2
     m_Bits: 1
   _groundCheckPosition: {fileID: 2455079349149691325}
+  bullet: {fileID: 425553154865397512, guid: e6f41d32fc4714f9b941c87993e0c1dc, type: 3}
+  isFlipped: 0
 --- !u!1 &5430209691160798161
 GameObject:
   m_ObjectHideFlags: 0

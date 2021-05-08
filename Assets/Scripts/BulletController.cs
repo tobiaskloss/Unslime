@@ -15,6 +15,7 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(Vector2.right * 10);    
+        rb.AddForce(transform.right * 10);
+
     }
 }

@@ -24,6 +24,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1890825285470382586, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
+      propertyPath: m_InstanceId
+      value: -90418
+      objectReference: {fileID: 0}
+    - target: {fileID: 1534439843619202793, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 6315981362594368487, guid: abdf7c15f43064e4a822d39e7b571a8e, type: 3}
     - target: {fileID: 2964916391471830551, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
       propertyPath: m_RootOrder
       value: 0
