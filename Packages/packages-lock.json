@@ -1,14 +1,5 @@
 {
   "dependencies": {
-    "com.mlapi.contrib.extensions": {
-      "version": "https://github.com/Unity-Technologies/mlapi-community-contributions.git?path=/com.mlapi.contrib.extensions",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.multiplayer.mlapi": "0.0.1-preview.1"
-      },
-      "hash": "faa77c81d04d65cdba460550c8c05b5b60fe8ce7"
-    },
     "com.unity.2d.animation": {
       "version": "6.0.1",
       "depth": 0,
