@@ -29,7 +29,6 @@ public class CharacterController : NetworkBehaviour
     [SerializeField] private Transform _groundCheckPosition;
     private bool _grounded;
     
-    
 
     [Header("Input")]
     private Vector2 wsad;
@@ -115,25 +114,19 @@ public class CharacterController : NetworkBehaviour
     void Shoot()
     {
         Vector3 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
-        Vector3 directionVector = (mousePositionWorld - transform.position).normalized;
-        Vector3 gunEnd = transform.position + directionVector;
-        SpawnBulletServerRpc(gunEnd);
+        //Vector3 directionVector = (mousePositionWorld - transform.position).normalized;
+        //Vector3 gunEnd = transform.position + directionVector;
+        SpawnBulletServerRpc(mousePositionWorld);
     }
 
     [ServerRpc]
     void SpawnBulletServerRpc(Vector3 gunEnd)
     {
-        Vector3 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
-        Quaternion q = Quaternion.LookRotation(transform.position, mousePosition);
+        //Vector3 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
+        Quaternion q = Quaternion.LookRotation(transform.position, gunEnd);
         var bulletController = Instantiate(bullet, gunEnd, q);
         
-        bulletController.transform.LookAt(mousePositionWorld);
-        //bulletController.transform.localEulerAngles = new Vector3(0, 0, 180f);
-
-        //if (isFlipped.Value)
-        //{
-        //    bulletController.transform.localEulerAngles = new Vector3(0, 0, 180f);
-        //}
+        //bulletController.transform.LookAt(mousePositionWorld);
 
         var networkObject = bulletController.GetComponent<NetworkObject>();
         networkObject.Spawn();

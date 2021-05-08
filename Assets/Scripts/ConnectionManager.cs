@@ -33,11 +33,12 @@ public class ConnectionManager : MonoBehaviour
         //If approve is true, the connection gets added. If it's false. The client gets disconnected
         if (counter % 2 == 1)
         {
-            callback(createPlayerObject, prefabHashKid, approve, kidSpawn[Random.Range(0,kidSpawn.Length)].position, quaternion.identity);
+            callback(createPlayerObject, prefabHashSnail, approve, snailSpawn[Random.Range(0, snailSpawn.Length)].position, quaternion.identity);
         }
         else
         {
-            callback(createPlayerObject, prefabHashSnail, approve, snailSpawn[Random.Range(0,snailSpawn.Length)].position, quaternion.identity);
+
+            callback(createPlayerObject, prefabHashKid, approve, kidSpawn[Random.Range(0, kidSpawn.Length)].position, quaternion.identity);
         }
 
         counter++;
