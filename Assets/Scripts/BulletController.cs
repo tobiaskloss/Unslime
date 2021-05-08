@@ -16,6 +16,5 @@ public class BulletController : MonoBehaviour
     void Update()
     {
         rb.AddForce(transform.right * 10);
-
     }
 }
