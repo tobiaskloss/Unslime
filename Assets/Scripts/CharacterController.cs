@@ -113,20 +113,26 @@ public class CharacterController : NetworkBehaviour
 
     void Shoot()
     {
-        Vector3 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
-        //Vector3 directionVector = (mousePositionWorld - transform.position).normalized;
-        //Vector3 gunEnd = transform.position + directionVector;
-        SpawnBulletServerRpc(mousePositionWorld);
+        Vector3 gunEnd;
+        if (isFlipped.Value)
+        {
+            gunEnd = transform.position + new Vector3(-.5f, 0, 0);
+        }
+        else
+        {
+            gunEnd = transform.position + new Vector3(.5f, 0, 0);
+        }
+        SpawnBulletServerRpc(gunEnd);
     }
 
     [ServerRpc]
     void SpawnBulletServerRpc(Vector3 gunEnd)
     {
-        //Vector3 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
-        Quaternion q = Quaternion.LookRotation(transform.position, gunEnd);
-        var bulletController = Instantiate(bullet, gunEnd, q);
-        
-        //bulletController.transform.LookAt(mousePositionWorld);
+        var bulletController = Instantiate(bullet, gunEnd, new Quaternion());
+        if (isFlipped.Value)
+        {
+            bulletController.transform.localEulerAngles = new Vector3(0, 0, 180f);
+        }
 
         var networkObject = bulletController.GetComponent<NetworkObject>();
         networkObject.Spawn();

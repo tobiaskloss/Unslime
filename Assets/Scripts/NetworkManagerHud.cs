@@ -32,7 +32,7 @@ namespace MLAPI.Extensions
             m_Transport.ConnectAddress = _hostInputField.text;
             ushort.TryParse(_portInputField.text, out ushort port);
             m_Transport.ConnectPort = port;
-            m_NetworkManager.StartHost(new Vector3(0, 0, 0), Quaternion.identity, true, NetworkSpawnManager.GetPrefabHashFromGenerator("SNAIL"));
+            m_NetworkManager.StartHost(new Vector3(0, 0, 0), Quaternion.identity, true, NetworkSpawnManager.GetPrefabHashFromGenerator("KID"));
             HideUI();
         }
 
