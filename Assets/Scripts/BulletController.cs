@@ -21,7 +21,7 @@ public class BulletController : NetworkBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (IsServer)
         {
@@ -30,7 +30,7 @@ public class BulletController : NetworkBehaviour
                 var characterController = collision.gameObject.GetComponent<CharacterController>();
                 characterController.Damage();
             }
-            Destroy(gameObject, lifeTimeAfterCollision);
+            Destroy(gameObject);
         }
     }
 

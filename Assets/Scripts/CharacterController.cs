@@ -1,4 +1,5 @@
 using MLAPI;
+using MLAPI.Extensions;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
 using Scriptableobjects;
@@ -162,10 +163,27 @@ public class CharacterController : NetworkBehaviour
 
     public void Damage()
     {
-        health.Value = health.Value - 1;
-        if (health.Value <= 0)
+        if (IsServer)
         {
-            Destroy(gameObject);
+            Debug.Log("Damage!");
+            health.Value = health.Value - 1;
+            if (health.Value <= 0)
+            {
+                Destroy(gameObject);
+                KillPlayerClientRpc();
+            }
         }
+      
+    }
+
+    [ClientRpc]
+    public void KillPlayerClientRpc()
+    {
+        /*if (!IsHost)
+        {
+            FindObjectOfType<NetworkManager>().StopClient();
+            var NMH = FindObjectOfType<NetworkManagerHud>();
+            NMH.ShowUI();
+        }*/
     }
 }

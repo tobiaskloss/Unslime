@@ -47,14 +47,14 @@ namespace MLAPI.Extensions
             HideUI();
         }
 
-        private void HideUI()
+        public void HideUI()
         {
             _canvasGroup.interactable = false;
             _canvasGroup.blocksRaycasts = false;
             _canvasGroup.alpha = 0;
         }
         
-        private void ShowUI()
+        public void ShowUI()
         {
             _canvasGroup.interactable = true;
             _canvasGroup.blocksRaycasts = true;
