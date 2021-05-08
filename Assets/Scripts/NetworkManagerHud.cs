@@ -1,132 +1,67 @@
 using System.Runtime.CompilerServices;
 using MLAPI.Spawning;
 using MLAPI.Transports.UNET;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MLAPI.Extensions
 {
-    [RequireComponent(typeof(NetworkManager))]
+
     [DisallowMultipleComponent]
     public class NetworkManagerHud : MonoBehaviour
     {
         NetworkManager m_NetworkManager;
-
         UNetTransport m_Transport;
 
-        GUIStyle m_LabelTextStyle;
+         
+        [SerializeField] private TMP_InputField _portInputField;
+        [SerializeField] private TMP_InputField _hostInputField;
 
-        // This is needed to make the port field more convenient. GUILayout.TextField is very limited and we want to be able to clear the field entirely so we can't cache this as ushort.
-        string m_PortString;
+        [SerializeField] private Button _hostButton;
+        [SerializeField] private Button _joinButton;
 
-        public Vector2 DrawOffset = new Vector2(10, 10);
-
-        public Color LabelColor = Color.black;
+        [SerializeField] private CanvasGroup _canvasGroup;
 
         void Awake()
         {
             // Only cache networking manager but not transport here because transport could change anytime.
-            m_NetworkManager = GetComponent<NetworkManager>();
-            m_LabelTextStyle = new GUIStyle(GUIStyle.none);
+            m_NetworkManager = FindObjectOfType<NetworkManager>();
+            m_Transport = (UNetTransport) m_NetworkManager.NetworkConfig.NetworkTransport;
+
         }
 
-        void OnGUI()
+        public void Host()
         {
-            m_LabelTextStyle.normal.textColor = LabelColor;
-
-            m_Transport = (UNetTransport)m_NetworkManager.NetworkConfig.NetworkTransport;
-
-            if (m_PortString == null)
-            {
-                m_PortString = m_Transport.ConnectPort.ToString();
-            }
-
-            GUILayout.BeginArea(new Rect(DrawOffset, new Vector2(200, 200)));
-
-            if (IsRunning(m_NetworkManager))
-            {
-                DrawStatusGUI();
-            }
-            else
-            {
-                DrawConnectGUI();
-            }
-
-            GUILayout.EndArea();
+            m_NetworkManager.StartHost(new Vector3(0, 0, 0), Quaternion.identity, true,
+                NetworkSpawnManager.GetPrefabHashFromGenerator("SNAIL"));
+            HideUI();
         }
 
-        void DrawConnectGUI()
+        public void Join()
         {
-            GUILayout.BeginHorizontal();
-            GUILayout.Space(10);
-            GUILayout.Label("Address", m_LabelTextStyle);
-            GUILayout.Label("Port", m_LabelTextStyle);
-
-            GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-
-            m_Transport.ConnectAddress = GUILayout.TextField(m_Transport.ConnectAddress);
-            m_PortString = GUILayout.TextField(m_PortString);
-            if (ushort.TryParse(m_PortString, out ushort port))
-            {
-                m_Transport.ConnectPort = port;
-            }
-
-            GUILayout.EndHorizontal();
-
-            if (GUILayout.Button("Host (Server + Client)"))
-            {
-                m_NetworkManager.StartHost(new Vector3(0,0,0), Quaternion.identity, true, NetworkSpawnManager.GetPrefabHashFromGenerator("SNAIL"));
-            }
-
-            GUILayout.BeginHorizontal();
-
-            if (GUILayout.Button("Server"))
-            {
-                m_NetworkManager.StartServer();
-            }
-
-            if (GUILayout.Button("Client"))
-            {
-                m_NetworkManager.StartClient();
-            }
-
-            GUILayout.EndHorizontal();
+            m_Transport.ConnectAddress = _hostInputField.text;
+            ushort.TryParse(_portInputField.text, out ushort port);
+            m_Transport.ConnectPort = port;
+            m_NetworkManager.StartClient();
+            HideUI();
         }
 
-        void DrawStatusGUI()
+        private void HideUI()
         {
-            if (m_NetworkManager.IsServer)
-            {
-                var mode = m_NetworkManager.IsHost ? "Host" : "Server";
-                GUILayout.Label($"{mode} active on port: {m_Transport.ConnectPort.ToString()}", m_LabelTextStyle);
-            }
-            else
-            {
-                if (m_NetworkManager.IsConnectedClient)
-                {
-                    GUILayout.Label($"Client connected {m_Transport.ConnectAddress}:{m_Transport.ConnectPort.ToString()}", m_LabelTextStyle);
-                }
-            }
-
-            if (GUILayout.Button("Stop"))
-            {
-                if (m_NetworkManager.IsHost)
-                {
-                    m_NetworkManager.StopHost();
-                }
-                else if(m_NetworkManager.IsServer)
-                {
-                    m_NetworkManager.StopServer();
-                }
-                else if (m_NetworkManager.IsClient)
-                {
-                    m_NetworkManager.StopClient();
-                }
-            }
+            _canvasGroup.interactable = false;
+            _canvasGroup.blocksRaycasts = false;
+            _canvasGroup.alpha = 0;
         }
         
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        bool IsRunning(NetworkManager networkManager) => networkManager.IsServer || networkManager.IsClient;
+        private void ShowUI()
+        {
+            _canvasGroup.interactable = true;
+            _canvasGroup.blocksRaycasts = true;
+            _canvasGroup.alpha = 1;
+        }
+
     }
+
+
 }

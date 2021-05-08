@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1dc83b81783102a4386d7b287fefd11c
+guid: 114176dd01321f64381eb73b8d45d6f2
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Lethal Slime
+  - SlimeSeason
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
