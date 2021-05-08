@@ -1,8 +1,6 @@
-using System;
 using System.Runtime.CompilerServices;
 using MLAPI.Spawning;
 using MLAPI.Transports.UNET;
-using UnityEditor.Rendering.Universal.ShaderGUI;
 using UnityEngine;
 
 namespace MLAPI.Extensions
