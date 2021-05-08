@@ -261,7 +261,7 @@ MonoBehaviour:
   m_SyncAngularVelocity: 1
   m_SyncPosition: 1
   m_SyncRotation: 1
-  m_InterpolationTime: 0
+  m_InterpolationTime: 1
 --- !u!1 &5430209691160798161
 GameObject:
   m_ObjectHideFlags: 0

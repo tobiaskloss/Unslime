@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using MLAPI;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class BulletController : NetworkBehaviour
 {
     public Rigidbody2D rb;
     public float bulletForce = 5000f;
@@ -12,13 +13,19 @@ public class BulletController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
-        Destroy(gameObject, lifeTime);
+        if (IsServer)
+        {
+            rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
+            Destroy(gameObject, lifeTime);
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject, lifeTimeAfterCollision);
+        if (IsServer)
+        {
+            Destroy(gameObject, lifeTimeAfterCollision);
+        }
     }
 
 

@@ -53,7 +53,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 425553154865397512, guid: e6f41d32fc4714f9b941c87993e0c1dc, type: 3}
       propertyPath: m_Name
-      value: Bullet
+      value: Bullet_slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889310322238308328, guid: e6f41d32fc4714f9b941c87993e0c1dc, type: 3}
+      propertyPath: PrefabHash
+      value: 4531695418269854112
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889310322238308328, guid: e6f41d32fc4714f9b941c87993e0c1dc, type: 3}
+      propertyPath: PrefabHashGenerator
+      value: Bullet_Slime
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f41d32fc4714f9b941c87993e0c1dc, type: 3}

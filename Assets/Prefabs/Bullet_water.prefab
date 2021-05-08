@@ -59,5 +59,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet_water
       objectReference: {fileID: 0}
+    - target: {fileID: 8889310322238308328, guid: e6f41d32fc4714f9b941c87993e0c1dc, type: 3}
+      propertyPath: PrefabHash
+      value: 17949808900307945965
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889310322238308328, guid: e6f41d32fc4714f9b941c87993e0c1dc, type: 3}
+      propertyPath: PrefabHashGenerator
+      value: Bullet_Water
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f41d32fc4714f9b941c87993e0c1dc, type: 3}

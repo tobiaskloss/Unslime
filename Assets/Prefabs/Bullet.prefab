@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 425553154865397513}
   - component: {fileID: 425553154865397511}
   - component: {fileID: 425553154865397508}
+  - component: {fileID: 8889310322238308328}
+  - component: {fileID: -4175623632900430821}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -178,3 +180,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 425553154865397513}
   bulletForce: 10
+  lifeTime: 1
+  lifeTimeAfterCollision: 0.1
+--- !u!114 &8889310322238308328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425553154865397512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 6240353375399311021
+  PrefabHashGenerator: Bullet
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+--- !u!114 &-4175623632900430821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425553154865397512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bc5c9a6e95ba94ebbce49c5300d71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  netVelocity:
+    m_InternalValue: {x: 0, y: 0}
+  netAngularVelocity:
+    m_InternalValue: 0
+  netPosition:
+    m_InternalValue: {x: 0, y: 0}
+  netRotation:
+    m_InternalValue: 0
+  netUpdateId:
+    m_InternalValue: 0
+  m_SyncVelocity: 1
+  m_SyncAngularVelocity: 1
+  m_SyncPosition: 1
+  m_SyncRotation: 1
+  m_InterpolationTime: 1

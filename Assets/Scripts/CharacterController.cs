@@ -1,4 +1,5 @@
 using MLAPI;
+using MLAPI.Messaging;
 using Scriptableobjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -42,18 +43,27 @@ public class CharacterController : NetworkBehaviour
 
         _moveAction.performed += context =>
         {
-            wsad = context.ReadValue<Vector2>();
-            isFlipped = wsad.x < 0;
+            if (IsOwner)
+            {
+                wsad = context.ReadValue<Vector2>();
+                isFlipped = wsad.x < 0;
+            }
         };
 
         _moveAction.canceled += context =>
         {
-            wsad = context.ReadValue<Vector2>();            
+            if (IsOwner)
+            {
+                wsad = context.ReadValue<Vector2>(); 
+            }
         };
 
         _shootAction.performed += context =>
         {
-            Shoot();
+            if (IsOwner)
+            {
+                Shoot();
+            }
         };
     }
 
@@ -79,11 +89,20 @@ public class CharacterController : NetworkBehaviour
         {
             gunEnd = transform.position + new Vector3(.5f, 0, 0);
         }
+        SpawnBulletServerRpc(gunEnd);
+    }
+
+    [ServerRpc]
+    void SpawnBulletServerRpc(Vector3 gunEnd)
+    {
         var bulletController = Instantiate(bullet, gunEnd, new Quaternion());
         if (isFlipped)
         {
             bulletController.transform.localEulerAngles = new Vector3(0, 0, 180f);
         }
+
+        var networkObject = bulletController.GetComponent<NetworkObject>();
+        networkObject.Spawn();
     }
 
     private void FixedUpdate()
