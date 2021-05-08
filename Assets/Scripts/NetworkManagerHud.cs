@@ -33,8 +33,10 @@ namespace MLAPI.Extensions
 
         public void Host()
         {
-            m_NetworkManager.StartHost(new Vector3(0, 0, 0), Quaternion.identity, true,
-                NetworkSpawnManager.GetPrefabHashFromGenerator("SNAIL"));
+            m_Transport.ConnectAddress = _hostInputField.text;
+            ushort.TryParse(_portInputField.text, out ushort port);
+            m_Transport.ConnectPort = port;
+            m_NetworkManager.StartHost(new Vector3(0, 0, 0), Quaternion.identity, true, NetworkSpawnManager.GetPrefabHashFromGenerator("SNAIL"));
             HideUI();
         }
 
@@ -44,6 +46,8 @@ namespace MLAPI.Extensions
             ushort.TryParse(_portInputField.text, out ushort port);
             m_Transport.ConnectPort = port;
             m_NetworkManager.StartClient();
+            Debug.Log(m_Transport.ConnectAddress);
+            Debug.Log(port);
             HideUI();
         }
 
