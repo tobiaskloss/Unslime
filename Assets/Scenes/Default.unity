@@ -783,7 +783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "7777\u200B"
+  m_text: "\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 7777
+  m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -2174,21 +2174,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 2.754284, y: 3.5327973}
-  - {x: 2.8209333, y: 3.532288}
-  - {x: 3.008482, y: 3.5308554}
-  - {x: 3.2983296, y: 3.528641}
-  - {x: 3.6718774, y: 3.525787}
-  - {x: 4.110523, y: 3.522435}
-  - {x: 4.59567, y: 3.518729}
-  - {x: 5.108715, y: 3.5148084}
-  - {x: 5.631062, y: 3.510818}
-  - {x: 6.1441083, y: 3.5068982}
-  - {x: 6.6292543, y: 3.5031915}
-  - {x: 7.0679007, y: 3.4998398}
-  - {x: 7.441448, y: 3.496986}
-  - {x: 7.731296, y: 3.4947715}
-  - {x: 7.918844, y: 3.4933386}
+  - {x: 2.754277, y: 3.5318875}
+  - {x: 7.918837, y: 3.4924288}
+  - {x: 7.9854875, y: 3.4919195}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -2595,10 +2583,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6a6873f1ae6e242a551848d1fe9067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_NetworkManager: {fileID: 213922904}
+  m_Transport: {fileID: 213922903}
   _portInputField: {fileID: 267086609}
   _hostInputField: {fileID: 1364925542}
-  _hostButton: {fileID: 1867523954}
-  _joinButton: {fileID: 250623211}
   _canvasGroup: {fileID: 1368273229}
 --- !u!82 &641087290
 AudioSource:
@@ -2761,7 +2749,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668192492}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -2908,7 +2896,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "178.200.49.47\r\u200B"
+  m_text: "\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4628,7 +4616,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: "178.200.49.47\r"
+  m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -6112,7 +6100,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076021052}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 

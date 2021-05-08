@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 using MLAPI.Spawning;
 using MLAPI.Transports.UNET;
@@ -11,24 +12,19 @@ namespace MLAPI.Extensions
     [DisallowMultipleComponent]
     public class NetworkManagerHud : MonoBehaviour
     {
-        NetworkManager m_NetworkManager;
-        UNetTransport m_Transport;
+        public NetworkManager m_NetworkManager;
+        public UNetTransport m_Transport;
 
          
         [SerializeField] private TMP_InputField _portInputField;
         [SerializeField] private TMP_InputField _hostInputField;
-
-        [SerializeField] private Button _hostButton;
-        [SerializeField] private Button _joinButton;
-
+        
         [SerializeField] private CanvasGroup _canvasGroup;
 
-        void Awake()
+        private void Awake()
         {
-            // Only cache networking manager but not transport here because transport could change anytime.
-            m_NetworkManager = FindObjectOfType<NetworkManager>();
-            m_Transport = (UNetTransport) m_NetworkManager.NetworkConfig.NetworkTransport;
-
+            _portInputField.text = "7777";
+            _hostInputField.text = "178.200.49.47";
         }
 
         public void Host()
