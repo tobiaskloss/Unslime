@@ -1,9 +1,10 @@
+using MLAPI;
 using Scriptableobjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterController : MonoBehaviour
+public class CharacterController : NetworkBehaviour
 {
     [SerializeField] private CharacterSettings _characterSettings;
     [SerializeField] private InputAction _jumpAction;
@@ -36,10 +37,7 @@ public class CharacterController : MonoBehaviour
     {
         _jumpAction.performed += context =>
         {
-            if (_grounded)
-            {
-                _rigidbody2D.AddForce(Vector2.up * _characterSettings.jumpForce, ForceMode2D.Impulse);
-            }
+            Jump();
         };
 
         _moveAction.performed += context =>
@@ -55,11 +53,22 @@ public class CharacterController : MonoBehaviour
 
         _shootAction.performed += context =>
         {
-            shoot();
+            Shoot();
         };
     }
 
-    void shoot()
+    void Jump()
+    {
+        if (IsOwner)
+        {
+            if (_grounded)
+            {
+                _rigidbody2D.AddForce(Vector2.up * _characterSettings.jumpForce, ForceMode2D.Impulse);
+            }
+        }
+    }
+
+    void Shoot()
     {
         Vector3 gunEnd;
         if (isFlipped)
@@ -80,7 +89,7 @@ public class CharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         _grounded = false;
-
+        
         var colliders = Physics2D.OverlapCircleAll(_groundCheckPosition.position, 0.2f, _groundLayers);
 
         foreach (var collider in colliders)

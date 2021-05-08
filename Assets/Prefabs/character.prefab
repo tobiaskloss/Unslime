@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2964916391471830550}
   - component: {fileID: 2964916391471830549}
   - component: {fileID: 2964916391471830548}
-  - component: {fileID: -1890825285470382586}
   - component: {fileID: 1534439843619202793}
   - component: {fileID: -3505879942741540753}
   m_Layer: 0
@@ -136,32 +135,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-1890825285470382586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2964916391471830553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 00000000
-  m_ShapePath:
-  - {x: -1.2800002, y: -1.2799997, z: 0}
-  - {x: -1.2800002, y: 1.28, z: 0}
-  - {x: 1.2800002, y: 1.28, z: 0}
-  - {x: 1.2800002, y: -1.2799997, z: 0}
-  m_ShapePathHash: 0
-  m_Mesh: {fileID: 0}
-  m_InstanceId: 32680
 --- !u!114 &1534439843619202793
 MonoBehaviour:
   m_ObjectHideFlags: 0
