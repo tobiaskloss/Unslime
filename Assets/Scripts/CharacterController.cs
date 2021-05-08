@@ -97,7 +97,6 @@ public class CharacterController : NetworkBehaviour
             if (IsOwner)
             {
                 mousePosition = context.ReadValue<Vector2>();
-                Debug.Log(mousePosition);
             }
         };
     }
@@ -118,14 +117,6 @@ public class CharacterController : NetworkBehaviour
         Vector3 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
         Vector3 directionVector = (mousePositionWorld - transform.position).normalized;
         Vector3 gunEnd = transform.position + directionVector;
-        //if (isFlipped.Value)
-        //{
-        //    gunEnd = transform.position + new Vector3(-5f, 0, 0);
-        //}
-        //else
-        //{
-        //    gunEnd = transform.position + new Vector3(5f, 0, 0);
-        //}
         SpawnBulletServerRpc(gunEnd);
     }
 
