@@ -39,6 +39,10 @@ public class CharacterController : MonoBehaviour
         {
             wsad = context.ReadValue<Vector2>();            
         };
+        _moveAction.canceled += context =>
+        {
+            wsad = context.ReadValue<Vector2>();            
+        };
     }
 
     private void FixedUpdate()
