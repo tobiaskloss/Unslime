@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NetworkInstanceId: 0
-  PrefabHash: 9906244450831583388
-  PrefabHashGenerator: character_snail
+  PrefabHash: 1097409516506089888
+  PrefabHashGenerator: SNAIL
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
 --- !u!1001 &6203222094549692021

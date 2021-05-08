@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NetworkInstanceId: 0
-  PrefabHash: 16796798588748357727
-  PrefabHashGenerator: character_kid
+  PrefabHash: 15586370176486353483
+  PrefabHashGenerator: KID
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
 --- !u!1001 &7724308293456020932

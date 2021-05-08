@@ -1,6 +1,8 @@
 using System;
 using System.Runtime.CompilerServices;
+using MLAPI.Spawning;
 using MLAPI.Transports.UNET;
+using UnityEditor.Rendering.Universal.ShaderGUI;
 using UnityEngine;
 
 namespace MLAPI.Extensions
@@ -76,7 +78,7 @@ namespace MLAPI.Extensions
 
             if (GUILayout.Button("Host (Server + Client)"))
             {
-                m_NetworkManager.StartHost();
+                m_NetworkManager.StartHost(new Vector3(0,0,0), Quaternion.identity, true, NetworkSpawnManager.GetPrefabHashFromGenerator("SNAIL"));
             }
 
             GUILayout.BeginHorizontal();
