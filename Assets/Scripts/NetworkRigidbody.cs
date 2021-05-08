@@ -5,25 +5,25 @@ using UnityEngine;
 
 public class NetworkRigidbody : NetworkBehaviour
 {
-    public NetworkVariableVector3 netVelocity = new NetworkVariableVector3(new NetworkVariableSettings()
+    public NetworkVariableVector2 netVelocity = new NetworkVariableVector2(new NetworkVariableSettings()
     {
         ReadPermission = NetworkVariablePermission.Everyone,
         WritePermission = NetworkVariablePermission.OwnerOnly,
         SendTickrate = 20
     });
-    public NetworkVariableVector3 netAngularVelocity = new NetworkVariableVector3(new NetworkVariableSettings()
+    public NetworkVariableFloat netAngularVelocity = new NetworkVariableFloat(new NetworkVariableSettings()
     {
         ReadPermission = NetworkVariablePermission.Everyone,
         WritePermission = NetworkVariablePermission.OwnerOnly,
         SendTickrate = 20
     });
-    public NetworkVariableVector3 netPosition = new NetworkVariableVector3(new NetworkVariableSettings()
+    public NetworkVariableVector2 netPosition = new NetworkVariableVector2(new NetworkVariableSettings()
     {
         ReadPermission = NetworkVariablePermission.Everyone,
         WritePermission = NetworkVariablePermission.OwnerOnly,
         SendTickrate = 20
     });
-    public NetworkVariableQuaternion netRotation = new NetworkVariableQuaternion(new NetworkVariableSettings()
+    public NetworkVariableFloat netRotation = new NetworkVariableFloat(new NetworkVariableSettings()
     {
         ReadPermission = NetworkVariablePermission.Everyone,
         WritePermission = NetworkVariablePermission.OwnerOnly,
@@ -54,21 +54,21 @@ public class NetworkRigidbody : NetworkBehaviour
     [Serializable]
     struct InterpolationState
     {
-        public Vector3 PositionDelta;
-        public Quaternion RotationDelta;
-        public Vector3 VelocityDelta;
-        public Vector3 AngularVelocityDelta;
+        public Vector2 PositionDelta;
+        public float RotationDelta;
+        public Vector2 VelocityDelta;
+        public float AngularVelocityDelta;
         public float TimeRemaining;
         public float TotalTime;
     }
 
     uint m_InterpolationChangeId;
     InterpolationState m_InterpolationState;
-    Rigidbody m_Rigidbody;
+    Rigidbody2D m_Rigidbody;
 
     void Awake()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
+        m_Rigidbody = GetComponent<Rigidbody2D>();
     }
 
     void BeginInterpolation()
@@ -76,7 +76,7 @@ public class NetworkRigidbody : NetworkBehaviour
         m_InterpolationState = new InterpolationState()
         {
             PositionDelta = netPosition.Value - m_Rigidbody.position,
-            RotationDelta = Quaternion.Inverse(m_Rigidbody.rotation) * netRotation.Value,
+            RotationDelta = (-1f * m_Rigidbody.rotation) * netRotation.Value,
             VelocityDelta = netVelocity.Value - m_Rigidbody.velocity,
             AngularVelocityDelta = netAngularVelocity.Value - m_Rigidbody.angularVelocity,
             TimeRemaining = m_InterpolationTime,
@@ -145,7 +145,7 @@ public class NetworkRigidbody : NetworkBehaviour
                 if (m_SyncRotation)
                 {
                     m_Rigidbody.rotation =
-                        m_Rigidbody.rotation * Quaternion.Slerp(Quaternion.identity, m_InterpolationState.RotationDelta, deltaTime);
+                        m_Rigidbody.rotation * Mathf.Lerp(1f,m_InterpolationState.RotationDelta, deltaTime);
                 }
 
                 if (m_SyncVelocity)
@@ -168,12 +168,11 @@ public class NetworkRigidbody : NetworkBehaviour
         return netVelocity.Settings.WritePermission == NetworkVariablePermission.OwnerOnly;
     }
 
-    static bool TryUpdate(NetworkVariableVector3 variable, Vector3 value)
+    static bool TryUpdate(NetworkVariableVector2 variable, Vector2 value)
     {
         var current = variable.Value;
         if (Mathf.Approximately(current.x, value.x)
-            && Mathf.Approximately(current.y, value.y)
-            && Mathf.Approximately(current.z, value.z))
+            && Mathf.Approximately(current.y, value.y))
         {
             return false;
         }
@@ -182,13 +181,10 @@ public class NetworkRigidbody : NetworkBehaviour
         return true;
     }
 
-    static bool TryUpdate(NetworkVariableQuaternion variable, Quaternion value)
+    static bool TryUpdate(NetworkVariableFloat variable, float value)
     {
         var current = variable.Value;
-        if (Mathf.Approximately(current.x, value.x)
-            && Mathf.Approximately(current.y, value.y)
-            && Mathf.Approximately(current.z, value.z)
-            && Mathf.Approximately(current.w, value.w))
+        if (Mathf.Approximately(current, value))
         {
             return false;
         }

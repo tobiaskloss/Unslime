@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacf7686ca494a818cd24395be994484, type: 3}
   m_Name: DefaultCharacterSettings
   m_EditorClassIdentifier: 
-  jumpForce: 6
+  jumpForce: 8
   walkSpeed: 10

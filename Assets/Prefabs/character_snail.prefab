@@ -26,12 +26,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1890825285470382586, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
       propertyPath: m_InstanceId
-      value: -90708
+      value: -15746
       objectReference: {fileID: 0}
     - target: {fileID: 1534439843619202793, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
       propertyPath: bullet
       value: 
       objectReference: {fileID: 4477096425437902696, guid: 14f1d2151055e4654af68c15a960b13d, type: 3}
+    - target: {fileID: 2455079349149691325, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.647
+      objectReference: {fileID: 0}
     - target: {fileID: 2964916391471830550, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
       propertyPath: m_Sprite
       value: 
