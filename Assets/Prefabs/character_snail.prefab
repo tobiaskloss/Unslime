@@ -96,6 +96,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: character_snail
       objectReference: {fileID: 0}
+    - target: {fileID: 2964916391471830553, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430209691160798161, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
 --- !u!1 &9165733570609969260 stripped
