@@ -476,6 +476,22 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Shoot
       m_Flags: 0
+  _mouseAction:
+    m_Name: Mouse
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1f90aede-017d-4d69-9bdb-49ad6d725aaf
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: fd7965f4-16bd-414b-80e3-7b2fd4e8d324
+      m_Path: <Mouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Mouse
+      m_Flags: 0
   _healthSlider: {fileID: 109578645169625941}
   _checkForGrounding: 1
   _groundLayers:

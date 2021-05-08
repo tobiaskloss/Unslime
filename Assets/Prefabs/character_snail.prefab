@@ -32,6 +32,14 @@ PrefabInstance:
       propertyPath: bullet
       value: 
       objectReference: {fileID: 4477096425437902696, guid: 14f1d2151055e4654af68c15a960b13d, type: 3}
+    - target: {fileID: 1534439843619202793, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
+      propertyPath: _mouseAction.m_Id
+      value: 419beb4e-f166-47ce-b130-fe65caffe0b5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1534439843619202793, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
+      propertyPath: _mouseAction.m_Name
+      value: Mouse
+      objectReference: {fileID: 0}
     - target: {fileID: 2455079349149691325, guid: 15679d4ae4eaef94fb4254f656105d70, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.117

@@ -14,6 +14,8 @@ public class CharacterController : NetworkBehaviour
     [SerializeField] private InputAction _jumpAction;
     [SerializeField] private InputAction _moveAction;
     [SerializeField] private InputAction _shootAction;
+    [SerializeField] private InputAction _mouseAction;
+
 
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
@@ -31,6 +33,8 @@ public class CharacterController : NetworkBehaviour
 
     [Header("Input")]
     private Vector2 wsad;
+    private Vector2 mousePosition;
+
 
     [Header("Shooting")]
     public GameObject bullet;
@@ -88,6 +92,14 @@ public class CharacterController : NetworkBehaviour
                 Shoot();
             }
         };
+        _mouseAction.performed += context =>
+        {
+            if (IsOwner)
+            {
+                mousePosition = context.ReadValue<Vector2>();
+                Debug.Log(mousePosition);
+            }
+        };
     }
 
     void Jump()
@@ -103,26 +115,34 @@ public class CharacterController : NetworkBehaviour
 
     void Shoot()
     {
-        Vector3 gunEnd;
-        if (isFlipped.Value)
-        {
-            gunEnd = transform.position + new Vector3(-.5f, 0, 0);
-        }
-        else
-        {
-            gunEnd = transform.position + new Vector3(.5f, 0, 0);
-        }
+        Vector3 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector3 directionVector = (mousePositionWorld - transform.position).normalized;
+        Vector3 gunEnd = transform.position + directionVector;
+        //if (isFlipped.Value)
+        //{
+        //    gunEnd = transform.position + new Vector3(-5f, 0, 0);
+        //}
+        //else
+        //{
+        //    gunEnd = transform.position + new Vector3(5f, 0, 0);
+        //}
         SpawnBulletServerRpc(gunEnd);
     }
 
     [ServerRpc]
     void SpawnBulletServerRpc(Vector3 gunEnd)
     {
-        var bulletController = Instantiate(bullet, gunEnd, new Quaternion());
-        if (isFlipped.Value)
-        {
-            bulletController.transform.localEulerAngles = new Vector3(0, 0, 180f);
-        }
+        Vector3 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
+        Quaternion q = Quaternion.LookRotation(transform.position, mousePosition);
+        var bulletController = Instantiate(bullet, gunEnd, q);
+        
+        bulletController.transform.LookAt(mousePositionWorld);
+        //bulletController.transform.localEulerAngles = new Vector3(0, 0, 180f);
+
+        //if (isFlipped.Value)
+        //{
+        //    bulletController.transform.localEulerAngles = new Vector3(0, 0, 180f);
+        //}
 
         var networkObject = bulletController.GetComponent<NetworkObject>();
         networkObject.Spawn();
@@ -152,6 +172,7 @@ public class CharacterController : NetworkBehaviour
         _jumpAction.Enable();
         _moveAction.Enable();
         _shootAction.Enable();
+        _mouseAction.Enable();
     }
 
     private void OnDisable()
@@ -159,6 +180,7 @@ public class CharacterController : NetworkBehaviour
         _jumpAction.Disable();
         _moveAction.Disable();
         _shootAction.Disable();
+        _mouseAction.Disable();
     }
 
     public void Damage()
