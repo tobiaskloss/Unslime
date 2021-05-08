@@ -14,6 +14,7 @@ public class CharacterController : NetworkBehaviour
     [SerializeField] private InputAction _shootAction;
 
     private Rigidbody2D _rigidbody2D;
+    private SpriteRenderer _spriteRenderer;
 
     [Header("Ground Check")]
     [SerializeField] private bool _checkForGrounding;
@@ -35,6 +36,7 @@ public class CharacterController : NetworkBehaviour
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -121,6 +123,7 @@ public class CharacterController : NetworkBehaviour
                 _grounded = true;
             }
         }
+        _spriteRenderer.flipX = !isFlipped.Value;
         _rigidbody2D.AddForce(new Vector2(wsad.x * _characterSettings.walkSpeed, 0), ForceMode2D.Force);
     }
 
